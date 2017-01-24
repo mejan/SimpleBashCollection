@@ -1,0 +1,17 @@
+#! /bin/bash
+
+function mini(){
+    if [ -f ~/.local/share/Tomahawk/Tomahawk.log ]; then
+        #/usr/bin/truncate -cs 0 ~/.local/share/Tomahawk/Tomahawk.log
+        echo "NU JEAVLAR RENSADES SKITEN! " > ~/.local/share/Tomahawk/Tomahawk.log
+    fi;
+}
+process="tomahawk"
+result=`pgrep ${process}`
+
+if [ "${result:-null}" = null ]; then
+    mini
+else
+    pkill tomahawk
+    mini
+fi
